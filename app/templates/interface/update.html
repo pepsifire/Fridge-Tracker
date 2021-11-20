@@ -1,0 +1,13 @@
+{% extends 'base.html' %} {% block header %}
+<h1>{% block title %}Edit "{{ fridge['title'] }}"{% endblock %}</h1>
+{% endblock %} {% block content %}
+<form method="post">
+    <label for="title">Fridge name</label>
+    <input name="fridgeName" id="fridgeName" value="{{ request.form['fridgeName'] or fridge['fridgeName'] }}" required>
+    <input type="submit" value="Save">
+</form>
+<hr>
+<form action="{{ url_for('fridgeInterface.delete', id=fridge['id']) }}" method="post">
+    <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
+</form>
+{% endblock %}

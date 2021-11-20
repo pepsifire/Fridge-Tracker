@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% block header %}
+<h1>{% block title %}Fridge{% endblock %}</h1>
+{% if g.user %}
+<a class="action" href="{{ url_for('fridgeInterface.index') }}">Back</a>
+<a class="action" href="{{ url_for('fridgeInterface.addItem', id=fridgeId) }}">Add item</a> {% endif %} {% endblock %} {% block content %} {% for item in items %}
+
+<article class="post">
+    <header>
+        <div>
+            <h1>{{ item['itemName'] }}</h1>
+            <div class="about">{{ item['itemType'] }} on {{ item['spoilDate'] }}</div>
+        </div>
+        {% if g.user['id'] == item['owner_id'] %}
+        <form action="{{ url_for('fridgeInterface.deleteItem')}}" method="post">
+            <input name="itemName" id="itemNameName" value="{{ item['itemName'] }}" required hidden>
+            <input name="spoilDate" id="spoilDate" value="{{ item['spoilDate'] }}" required hidden>
+            <input name="itemType" id="itemType" value="{{ item['itemType'] }}" required hidden>
+            <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
+        </form>
+        {% endif %}
+    </header>
+
+</article>
+{% if not loop.last %}
+<hr> {% endif %} {% endfor %} {% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% block header %}
+<h1>Add item to fridge</h1>
+{% endblock %} {% block content %}
+<form method="post">
+    <label for="itemName">Item name</label>
+    <input name="itemName" id="fridgeName" value="{{ request.form['itemName'] }}" required>
+    <label for="spoilDate">Date on the package (best before/ use by date)</label>
+    <input name="spoilDate" id="spoilDate" type="date" value="{{ request.form['spoilDate'] }}" required>
+    <label for="itemType">Item Type</label>
+    <select id="itemType" name="itemType" value="{{ request.form['itemType'] }}">
+        <option value="bestBefore">Best before</option>
+        <option value="lastUseDate">Use by date</option>
+    </select>
+    <input type="submit" value="Save">
+</form>
+<hr> {% endblock %}

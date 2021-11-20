@@ -12,15 +12,15 @@ CREATE TABLE fridge (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   owner_id INTEGER NOT NULL,
   created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  name TEXT NOT NULL,
+  fridgeName TEXT NOT NULL,
   FOREIGN KEY (owner_id) REFERENCES user (id)
 );
 
 CREATE TABLE item (
-  name TEXT NOT NULL,
+  itemName TEXT NOT NULL,
   spoilDate TEXT NOT NULL,
   itemType TEXT NOT NULL,
   fridge INTEGER NOT NULL,
   FOREIGN KEY (fridge) REFERENCES fridge (id)
-  PRIMARY KEY (name, spoilDate, itemType)
+  PRIMARY KEY (itemName, spoilDate, itemType)
 )

@@ -35,5 +35,8 @@ def create_app(test_config=None):
     db.init_app(app)
     from . import auth
     app.register_blueprint(auth.bp)
+    from . import fridgeInterface
+    app.register_blueprint(fridgeInterface.bp)
+    app.add_url_rule('/', endpoint='index')
 
     return app
