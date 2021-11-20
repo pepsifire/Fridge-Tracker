@@ -60,6 +60,9 @@ def get_items(fridgeId, check_owner=True):
         (fridgeId,)
     ).fetchall()
 
+    for item in items:
+        if item['owner_id'] != g.user['id']:
+            abort(403, "Forbidden")
     return items
 
 @bp.route('/<int:id>/update', methods=('GET', 'POST'))

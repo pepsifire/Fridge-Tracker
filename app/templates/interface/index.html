@@ -5,16 +5,18 @@
 <article class="post">
     <header>
         <div>
+            {% if g.user['id'] == fridge['owner_id'] %}
             <a href="{{ url_for('fridgeInterface.viewItems', id=fridge['id']) }}">
                 <h1>{{ fridge['fridgeName'] }}</h1>
             </a>
             <div class="about">by {{ fridge['username'] }} on {{ fridge['created'].strftime('%Y-%m-%d') }}</div>
+
         </div>
-        {% if g.user['id'] == fridge['owner_id'] %}
+
         <a class="action" href="{{ url_for('fridgeInterface.update', id=fridge['id']) }}">Edit</a>
-        <a class="action" href="{{ url_for('fridgeInterface.addItem', id=fridge['id']) }}">Add item</a> {% endif %}
+        <a class="action" href="{{ url_for('fridgeInterface.addItem', id=fridge['id']) }}">Add item</a>
+        <hr> {% endif %}
+
     </header>
-    <p class="body">{{ fridge['body'] }}</p>
 </article>
-{% if not loop.last %}
-<hr> {% endif %} {% endfor %} {% endblock %}
+{% if not loop.last %} {% endif %} {% endfor %} {% endblock %}
