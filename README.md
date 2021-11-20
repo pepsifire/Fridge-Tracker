@@ -1,11 +1,10 @@
 # FridgeTracker
 
 ## What
-- Backend logic for Fridge Tracker
-
+- Track items in your fridge
 ## Why
-- The app/website/whatever needs a backend
+- They will go bad otherwise
 
 ## How
 - Python
-- Flask (probably)
+- Flask
