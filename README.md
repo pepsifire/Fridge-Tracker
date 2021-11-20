@@ -1,4 +1,4 @@
-# FridgeTrackerBackend
+# FridgeTracker
 
 ## What
 - Backend logic for Fridge Tracker
