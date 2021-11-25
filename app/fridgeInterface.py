@@ -54,7 +54,7 @@ def get_fridge(id, check_owner=True):
     return fridge
 def get_items(fridgeId, check_owner=True):
     items = get_db().execute(
-        'SELECT i.itemName, i.spoilDate, i.itemType, i.fridge, f.id, f.owner_id'
+        'SELECT i.itemName, i.spoilDate, i.itemType, i.fridge, i.created, f.id, f.owner_id'
         ' FROM item i JOIN fridge f on f.id = i.fridge'
         ' WHERE f.id = ?',
         (fridgeId,)
@@ -139,6 +139,7 @@ def deleteItem():
         itemName = request.form['itemName']
         spoilDate = request.form['spoilDate']
         itemType = request.form['itemType']
+        created = request.form['created']
         error = None
 
         if not itemName or not spoilDate or not itemType:
@@ -147,6 +148,6 @@ def deleteItem():
             flash(error)
         else:
             db = get_db()
-            db.execute('DELETE FROM item WHERE (itemName, spoilDate, itemType) = (?,?,?)', (itemName, spoilDate, itemType))
+            db.execute('DELETE FROM item WHERE (itemName, spoilDate, itemType, created) = (?,?,?,?)', (itemName, spoilDate, itemType, created))
             db.commit()
     return redirect(url_for('fridgeInterface.index'))

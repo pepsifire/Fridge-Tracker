@@ -15,6 +15,7 @@
             <input name="itemName" id="itemNameName" value="{{ item['itemName'] }}" required hidden>
             <input name="spoilDate" id="spoilDate" value="{{ item['spoilDate'] }}" required hidden>
             <input name="itemType" id="itemType" value="{{ item['itemType'] }}" required hidden>
+            <input name="created" id="created" value="{{ item['created'] }}" required hidden>
             <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
         </form>
         {% endif %}

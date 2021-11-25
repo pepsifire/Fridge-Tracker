@@ -21,6 +21,7 @@ CREATE TABLE item (
   spoilDate TEXT NOT NULL,
   itemType TEXT NOT NULL,
   fridge INTEGER NOT NULL,
+  created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (fridge) REFERENCES fridge (id)
-  PRIMARY KEY (itemName, spoilDate, itemType)
+  PRIMARY KEY (itemName, created)
 )
